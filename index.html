@@ -53,6 +53,11 @@
 
 <body>
   <div id="pagewrap" class="pagewrap">
+    <div class="cookies text-center py-3" id="cookiesBox">
+			<p class="d-inline pt-3">Our cookies follows terms and condition for better exprience.</p>
+			<button id="accept_cookies" class="cookiesBtn ms-5">accept all cookies</button>
+			<button id="cancel_cookies" class="cookiesBtn ">cancel</button>
+		</div>
     <div id="html-content" class="wrapper-content">
       <header class="header-transparent">
         <div class="header-main">
@@ -114,7 +119,7 @@
                   </div>
                   <p class="des font-bold text-center">The Journey of Ganso Sushi Tradition</p>
                   <p class="des margin-bottom-20 text-center">For over two decades, Ganso Sushi has blended tradition and creativity, offering Tokyo’s freshest sushi crafted with passion, precision, and a warm, welcoming spirit.</p>
-                  <div class="swin-btn-wrap center"><a href="#" class="swin-btn center form-submit btn-transparent">
+                  <div class="swin-btn-wrap center"><a href="about.html" class="swin-btn center form-submit btn-transparent">
                       <span> About Us</span></a></div>
                 </div>
               </div>
@@ -786,7 +791,7 @@
             </div>
             <div class="video-wrapper equal-height deco-abs">
               <div class="swin-sc swin-sc-video">
-                <div class="play-wrap"><a href="https://vimeo.com/27814858" class="play-btn swipebox"><i
+                <div class="play-wrap"><a href="#" class="play-btn swipebox"><i
                       class="play-icon fa fa-play"></i></a></div>
               </div>
             </div>
@@ -1084,7 +1089,7 @@
                 <p>Copyright © 2021, Ganso Sushi.</p>
               </div>
               <div class="col-md-6">
-                privacy policy | terms of use | cookies policy | Disclaimer
+                <a href="privacyPolicy.html">Privacy Policy</a> | <a href="terms&condition.html">Terms & condition</a> | <a href="cookies.html">Cookies Policy</a> | <a href="Discalimer.html"> Disclaimer</a>
               </div>
             </div>
           </div>
@@ -1163,6 +1168,21 @@
   <script src="assets/js/layout.js"></script>
   <script src="assets/js/elements.js"></script>
   <script src="assets/js/widget.js"></script>
+  <script>
+    if (sessionStorage.getItem('cookiesDismissed') === 'true') {
+			document.getElementById('cookiesBox').style.display = 'none';
+		}
+
+		document.getElementById("accept_cookies").addEventListener('click', function () {
+			document.getElementById('cookiesBox').style.display = 'none';
+			sessionStorage.setItem('cookiesDismissed', 'true');
+		});
+
+		document.getElementById('cancel_cookies').addEventListener('click', function () {
+			document.getElementById('cookiesBox').style.display = 'none';
+			sessionStorage.setItem('cookiesDismissed', 'true');
+		});
+  </script>
 </body>
 
 </html>

@@ -1,7 +1,4 @@
 /*------------------------------------------------------------------
-[Table of contents]
-This file include css code for layout structure.
-Press Ctrl + F to find component. Ex: "#Header";
 
 1. Header: #Header
  - #Header Top
@@ -40,6 +37,23 @@ body {
   line-height: 1.714;
   color: #616f7d;
   overflow-x: hidden; }
+  .cookies{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 80px;
+    width: 100vw;
+    background-color: white;
+    color: black;
+    z-index: 999;
+    transition: all ;
+}
+.cookiesBtn{
+    background-color: #1f2427;
+    color: white;
+    border-radius: 40px;
+    padding: 10px 20px;
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1; }
