@@ -53,6 +53,11 @@
 
 <body>
   <div id="pagewrap" class="pagewrap">
+    <div class="cookies text-center py-3" id="cookiesBox">
+      <p class="d-inline pt-3">Our site uses cookies for better experience, analytics, and personalized content. Do you accept our use of cookies?</p>
+      <button id="accept_cookies" class="cookiesBtn ms-5">accept all cookies</button>
+      <button id="cancel_cookies" class="cookiesBtn ">cancel</button>
+    </div>
     <div id="html-content" class="wrapper-content">
       <header class="header-transparent">
         <div class="header-main">
@@ -505,6 +510,60 @@
   <script src="assets/js/layout.js"></script>
   <script src="assets/js/elements.js"></script>
   <script src="assets/js/widget.js"></script>
+  <script>
+    // Do not load external analytics until user accepts cookies.
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    // Helper to inject the gtag script and initialize it
+    function loadGtag() {
+      if (window._gtagLoaded) return;
+      window._gtagLoaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BYR30Q9JF8';
+      s.async = true;
+      s.onload = function () {
+        gtag('js', new Date());
+        gtag('config', 'G-BYR30Q9JF8');
+      };
+      document.head.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var consent = sessionStorage.getItem('cookiesConsent');
+
+      // If the user already accepted on a previous visit, load analytics and hide the banner.
+      if (consent === 'accepted') {
+        loadGtag();
+        var box = document.getElementById('cookiesBox');
+        if (box) box.style.display = 'none';
+      } else if (consent === 'declined') {
+        // If explicitly declined, just hide the banner.
+        var box = document.getElementById('cookiesBox');
+        if (box) box.style.display = 'none';
+      }
+
+      var acceptBtn = document.getElementById("accept_cookies");
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', function () {
+          sessionStorage.setItem('cookiesConsent', 'accepted');
+          var box = document.getElementById('cookiesBox');
+          if (box) box.style.display = 'none';
+          loadGtag();
+        });
+      }
+
+      var cancelBtn = document.getElementById('cancel_cookies');
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', function () {
+          sessionStorage.setItem('cookiesConsent', 'declined');
+          var box = document.getElementById('cookiesBox');
+          if (box) box.style.display = 'none';
+          // Do not load analytics
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
